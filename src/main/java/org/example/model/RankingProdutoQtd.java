@@ -53,7 +53,7 @@ public class RankingProdutoQtd {
     }
 
     public void setTotalVendido(int totalVendido) {
-        this.totalVendido = totalVendido;
+        this.totalVendido += totalVendido;
     }
 
     @Override
