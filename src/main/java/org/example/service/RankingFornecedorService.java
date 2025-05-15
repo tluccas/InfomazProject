@@ -4,7 +4,6 @@ import org.example.dao.EstoqueDAO;
 import org.example.dao.FornecedorDAO;
 import org.example.model.Estoque;
 import org.example.model.Fornecedor;
-import org.example.model.RankingCliente;
 import org.example.model.RankingFornecedores;
 
 import java.sql.SQLException;
@@ -13,16 +12,16 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class RankingFornecedor implements RankingService{
+public class RankingFornecedorService implements RankingService{
 
     private EstoqueDAO estoqueDAO;
     private FornecedorDAO fornecedorDAO;
     private List<RankingFornecedores> rankingFornecedores;
 
-    public RankingFornecedor(EstoqueDAO estoqueDAO, FornecedorDAO fornecedorDAO, List<RankingFornecedores> rankingFornecedores) {
+    public RankingFornecedorService(EstoqueDAO estoqueDAO, FornecedorDAO fornecedorDAO) {
         this.estoqueDAO = estoqueDAO;
         this.fornecedorDAO = fornecedorDAO;
-        this.rankingFornecedores = rankingFornecedores;
+        this.rankingFornecedores = new ArrayList<>();
     }
 
     @Override
@@ -62,7 +61,7 @@ public class RankingFornecedor implements RankingService{
         return rankingFornecedores;
     }
 
-    public void exibirRanking() throws SQLException {
+    public void exibirRanking() {
         List<RankingFornecedores> ranking = getRanking();
         int posicao = 1;
 

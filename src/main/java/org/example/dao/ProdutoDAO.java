@@ -1,4 +1,5 @@
 package org.example.dao;
+import org.example.model.Fornecedor;
 import org.example.model.Produto;
 
 import java.sql.*;
@@ -36,5 +37,15 @@ public class ProdutoDAO {
             }
         }
         return lista;
+    }
+
+    public Produto buscarProduto(int id) throws SQLException {
+        List<Produto> lista = listarProduto();
+        for (Produto p : lista) {
+            if(id == p.getIdProduto()) {
+                return p;
+            }
+        }
+        return null;
     }
 }

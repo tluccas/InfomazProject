@@ -35,4 +35,14 @@ public class FornecedorDAO {
         }
         return lista;
     }
+
+    public Fornecedor buscarFornecedor(String id) throws SQLException {
+        List<Fornecedor> lista = listarFornecedor();
+        for (Fornecedor f : lista) {
+            if(id.equals(f.getIdFornecedor())) {
+                return f;
+            }
+        }
+        return null;
+    }
 }

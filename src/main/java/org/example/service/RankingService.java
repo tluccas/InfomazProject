@@ -10,4 +10,6 @@ public interface RankingService <T> {
 
     public List<T> getRanking();
 
+    public void exibirRanking();
+
 }

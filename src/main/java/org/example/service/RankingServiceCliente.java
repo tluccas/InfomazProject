@@ -32,6 +32,7 @@ public class RankingServiceCliente implements RankingService {
             int ano = data.getYear(); //Converto as datas para local date para fazer a comparaçao
             int idCliente = venda.getIdCliente();
             String nome = clienteDAO.buscarCliente(idCliente).getNomeCliente();
+
             RankingCliente existente = null;
             for (RankingCliente r : rankingClientes) {
                 if (venda.getIdCliente() == r.getIdCliente() && mes == r.getMes() && ano == r.getAno()) {
