@@ -21,33 +21,47 @@ public class RankingServiceCliente implements RankingService {
         this.clienteDAO = clienteDAO;
         this.rankingClientes = new ArrayList<RankingCliente>();
     }
-
+    // Método do DESAFIO 3
     public void CalcularRanking() throws SQLException {
+        // Obtém todas as vendas registradas no sistema
         List<Venda> vendas = vendaDAO.listarVenda();
+        // Lista temporária para armazenar o ranking durante o cálculo
         List<RankingCliente> ranking = new ArrayList<RankingCliente>();
 
+        // Para cada venda no sistema...
         for (Venda venda : vendas) {
+            // Converte a data da nota fiscal para LocalDate
             LocalDate data = venda.getDataNota().toLocalDate();
-            int mes = data.getMonthValue();
-            int ano = data.getYear(); //Converto as datas para local date para fazer a comparaçao
+            int mes = data.getMonthValue();  // Extrai o mês (1-12)
+            int ano = data.getYear();       // Extrai o ano
+
+            // Obtém informações do cliente
             int idCliente = venda.getIdCliente();
             String nome = clienteDAO.buscarCliente(idCliente).getNomeCliente();
 
+            // Verifica se o cliente já está no ranking para o mesmo período
             RankingCliente existente = null;
             for (RankingCliente r : rankingClientes) {
-                if (venda.getIdCliente() == r.getIdCliente() && mes == r.getMes() && ano == r.getAno()) {
+                if (venda.getIdCliente() == r.getIdCliente()
+                        && mes == r.getMes()
+                        && ano == r.getAno()) {
                     existente = r;
-                    break;
+                    break;  // Cliente encontrado no ranking
                 }
             }
+
+            // Se o cliente já está no ranking para este período...
             if (existente != null) {
+                // Acumula a quantidade comprada
                 existente.adicionarQuantidade(venda.getQtdItem());
             } else {
+                // Se não existe, cria um novo registro no ranking
                 ranking.add(new RankingCliente(idCliente, nome, mes, ano, venda.getQtdItem()));
             }
         }
 
-        this.rankingClientes = ranking; //Atualiza a lista principal
+        // Atualiza o ranking principal com os dados calculados
+        this.rankingClientes = ranking;
     }
 
 

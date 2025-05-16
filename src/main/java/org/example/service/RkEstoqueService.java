@@ -25,7 +25,7 @@ public class RkEstoqueService {
         this.rankingEstoque = new ArrayList<>();
     }
 
-    // Método principal que gera o ranking de estoque
+    // Método do DESAFIO 10
     public void gerarRankingEstoque() throws SQLException {
         // Pega todos os produtos e estoques do banco de dados
         List<Produto> produtos = produtoDAO.listarProduto();

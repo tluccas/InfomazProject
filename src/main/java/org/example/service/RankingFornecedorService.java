@@ -24,33 +24,47 @@ public class RankingFornecedorService implements RankingService{
         this.rankingFornecedores = new ArrayList<>();
     }
 
+    //Método do DESAFIO 4
     @Override
     public void CalcularRanking() throws SQLException {
+        // Obtém todos os registros de estoque do banco de dados
         List<Estoque> estoque = estoqueDAO.listarEstoque();
+        // Lista temporária para armazenar o ranking durante o cálculo
         List<RankingFornecedores> ranking = new ArrayList<>();
 
+        // Para cada item no estoque...
         for (Estoque est : estoque) {
+            // Extrai informações de data (mês e ano) do registro de estoque
             LocalDate data = est.getDataEstoque().toLocalDate();
             int mes = data.getMonthValue();
             int ano = data.getYear();
+
+            // Obtém informações do fornecedor
             String id = est.getIdFornecedor();
             String nome = fornecedorDAO.buscarFornecedor(id).getNomeFornecedor();
 
-            //verificando se existe fornecedor no mes/ano
+            // Verifica se já existe um registro para este fornecedor no mesmo mês/ano
             RankingFornecedores existente = null;
             for(RankingFornecedores r : ranking) {
-                if(est.getIdFornecedor().equals(r.getIdFornecedor()) && mes == r.getMes() && ano == r.getAno()) {
+                if(est.getIdFornecedor().equals(r.getIdFornecedor())
+                        && mes == r.getMes()
+                        && ano == r.getAno()) {
                     existente = r;
-                    break;
+                    break;  // Fornecedor encontrado no ranking
                 }
             }
+
+            // Se o fornecedor já está no ranking para este período...
             if(existente != null) {
-                existente.setEstoque(est.getQtdEstoque()); //Se encontrar na lista incrementa pontos
-            }else{ // Se nao cria um novo
+                // Atualiza a quantidade em estoque (acumula)
+                existente.setEstoque(est.getQtdEstoque());
+            } else {
+                // Se não existe, cria um novo registro no ranking
                 ranking.add(new RankingFornecedores(id, nome, mes, ano, est.getQtdEstoque()));
             }
-
         }
+
+        // Atualiza o ranking principal com os dados calculados
         this.rankingFornecedores = ranking;
     }
 

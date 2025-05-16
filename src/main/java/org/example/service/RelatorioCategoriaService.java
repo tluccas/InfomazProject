@@ -19,7 +19,7 @@ public class RelatorioCategoriaService {
         this.relatorios = new ArrayList<>();
     }
 
-
+    // Método para resolução do Desafio 1
     public void gerarRelatorio() throws SQLException {
         // Obtém todas as vendas e produtos do banco de dados
         List<Venda> vendas = vendaDAO.listarVenda();

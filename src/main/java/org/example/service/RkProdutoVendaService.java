@@ -22,6 +22,7 @@ public class RkProdutoVendaService implements RankingService{
         this.rankingProdutos = new ArrayList<RkProdutoVenda>();
     }
 
+    //Método do DESAFIO 6
     @Override
     public void CalcularRanking() throws SQLException {
         // Pega todas as vendas do banco de dados

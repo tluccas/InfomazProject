@@ -25,35 +25,44 @@ public class HistoricoClienteService {
         this.produtoDAO = produtoDAO;
         this.historicoClientes = new ArrayList<HistoricoCliente>();
     }
-
+    //Método do DESAFIO 9
     public void gerarHistorico() throws SQLException {
+        // Obtém todas as vendas registradas no sistema
         List<Venda> vendas = vendaDAO.listarVenda();
+        // Lista temporária para armazenar o histórico durante o processamento
         List<HistoricoCliente> lista = new ArrayList<>();
 
+        // Para cada venda no sistema...
         for (Venda v : vendas) {
+            // Obtém informações do produto e cliente
             int idProduto = v.getIdProduto();
             int idCliente = v.getIdCliente();
             String nomeCliente = clienteDAO.buscarCliente(idCliente).getNomeCliente();
             String produto = produtoDAO.buscarProduto(idProduto).getNomeProduto();
 
+            // Verifica se o cliente já está no histórico
             HistoricoCliente existente = null;
             for (HistoricoCliente h : lista) {
-                if(h.getIdCliente() == idCliente){
+                if(h.getIdCliente() == idCliente) {
                     existente = h;
-                    break;
+                    break;  // Cliente encontrado no histórico
                 }
             }
-            if(existente != null){
+
+            // Se o cliente já tem histórico...
+            if(existente != null) {
+                // Adiciona o produto à lista de compras do cliente
                 existente.addCompra(produto);
-            }else {
+            } else {
+                // Se não tem histórico, cria um novo registro
                 HistoricoCliente novo = new HistoricoCliente(idCliente, nomeCliente);
                 novo.addCompra(produto);
                 lista.add(novo);
             }
         }
 
-        this.historicoClientes = lista; //Atualiza a lista principal
-
+        // Atualiza o histórico principal com os dados processados
+        this.historicoClientes = lista;
     }
 
     public List<HistoricoCliente> getHistoricoClientes() {

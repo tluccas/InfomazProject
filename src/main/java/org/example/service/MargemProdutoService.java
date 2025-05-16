@@ -24,7 +24,7 @@ public class MargemProdutoService {
         this.margemProdutos = new ArrayList<ProdutoMargem>();
     }
 
-    // Método que calcula a margem de lucro por produto
+    // Método do DESAFIO 2
     public void gerarMargem() throws SQLException {
         // Obtém todas as vendas, estoques e produtos do banco
         List<Venda> vendas = vendaDAO.listarVenda();

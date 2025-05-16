@@ -23,7 +23,7 @@ public class MargemLucroCategoriaService {
         this.rankingLucro = new ArrayList<MargemLucroCategoria>();
     }
 
-    // Método que calcula o ranking de lucro agrupado por categoria de produto
+    // Método do DESAFIO 8
     public void calcularRankingLucro() throws SQLException {
         // Obtém todas as vendas registradas
         List<Venda> vendas = vendaDAO.listarVenda();
