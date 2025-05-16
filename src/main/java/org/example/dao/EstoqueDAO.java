@@ -39,4 +39,14 @@ public class EstoqueDAO {
         }
         return lista;
     }
+
+    public Estoque buscarEstoque(int id) throws SQLException {
+        List<Estoque> lista = listarEstoque();
+        for (Estoque est : lista) {
+            if (est.getIdEstoque() == id) {
+                return est;
+            }
+        }
+        return null;
+    }
 }

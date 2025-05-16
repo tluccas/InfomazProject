@@ -27,6 +27,8 @@ public class RelatorioCategoria { //Classe para poder gerar o relatorio de venda
 
     public String toString() {
 
-        return "\n\nCategoria: " + categoria + " \nTotal Vendas:" + valor;
+        return String.format(
+                "\nCategoria: %s\n Valor: %.2f",
+                categoria, valor);
     }
 }

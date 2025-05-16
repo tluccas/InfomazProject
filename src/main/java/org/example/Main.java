@@ -22,7 +22,7 @@ public class Main {
 
             System.out.println("\n[ 1 ] Relatorio de categoria\n[ 2 ] Margem dos produtos\n[ 3 ] Ranking Clientes" +
                     "\n[ 4 ] Ranking Fornecedores\n[ 5 ] Ranking Produtos por QTD\n[ 6 ] Ranking Produtos por Venda" +
-                    "\n[ 7 ] Média de Vendas");
+                    "\n[ 7 ] Média de Vendas\n[ 8 ] Margem de Lucro");
 
             switch (sc.nextLine()) {
                 case "1":
@@ -64,7 +64,11 @@ public class Main {
                     MediaValorService mvservice = new MediaValorService(produtoDAO, vendaDAO);
                     mvservice.calculaMediaVendas();
                     System.out.println(mvservice.exibirMediaVendas());
-
+                case "8":
+                    System.out.println("\n---Ranking Produtos por Margem de Lucro---\n");
+                    MargemLucroCategoriaService mlcService = new MargemLucroCategoriaService(estoqueDAO, produtoDAO, vendaDAO);
+                    mlcService.calcularRankingLucro();
+                    mlcService.exibirRanking();
                     default:
                     System.out.println("Opção inválida");
                     break;

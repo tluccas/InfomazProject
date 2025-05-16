@@ -72,7 +72,11 @@ public class MediaValorProd {
         this.valorTotal = valorTotal;
     }
 
+    @Override
     public String toString() {
-        return "\nCategoria: " + categoria + "\nMês: " + mes + "\nAno: " + ano + "\nMédia de venda: " + media + "\n------------------";
+        return String.format(
+                "\nCategoria: %s\nMês: %s\nAno: %d\nMédia de venda: R$ %.2f\n------------------",
+                categoria, mes, ano, media
+        );
     }
 }

@@ -57,11 +57,9 @@ public class RkProdutoVenda {
 
     @Override
     public String toString() {
-        return
-                "Produto: '" + nome + '\'' +
-                        "\nMes: " + mes +
-                        "\nAno: " + ano +
-                        "\nValor de Vendas: " + valorVendido +
-                        "\n";
+        return String.format("Produto: %s\nMês: %d\nAno: %d\nValor de Vendas: %.2f",
+                nome, mes, ano, valorVendido
+
+        );
     }
 }
