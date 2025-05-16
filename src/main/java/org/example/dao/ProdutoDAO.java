@@ -39,10 +39,20 @@ public class ProdutoDAO {
         return lista;
     }
 
-    public Produto buscarProduto(int id) throws SQLException {
+    public Produto buscarProduto(int id) throws SQLException { // Busca o produto pelo id padrao
         List<Produto> lista = listarProduto();
         for (Produto p : lista) {
             if(id == p.getIdProduto()) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Produto buscarProdutoPorIdEstoque(int idEstoque) throws SQLException { //Busca o produto pelo id de estoque
+        List<Produto> lista = listarProduto();
+        for (Produto p : lista) {
+            if(idEstoque == p.getIdProduto()) {
                 return p;
             }
         }

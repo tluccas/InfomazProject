@@ -28,7 +28,7 @@ public class RelatorioCategoria { //Classe para poder gerar o relatorio de venda
     public String toString() {
 
         return String.format(
-                "\nCategoria: %s\n Valor: %.2f",
+                "\nCategoria: %s\nTotal de vendas: %.2f\n======",
                 categoria, valor);
     }
 }

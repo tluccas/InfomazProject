@@ -36,6 +36,9 @@ public class ProdutoMargem {
     }
 
     public String toString() {
-        return "\n------\nNome: \n" + nomeProduto + "\nId: " + idProduto + "\nMargem: " + margem + "\n--------\n";
+        return String.format(
+                "\n\nProduto: %s\nMargem do Produto: %.2f\n========="
+                , nomeProduto, margem
+        );
     }
 }

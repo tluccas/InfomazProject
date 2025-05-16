@@ -63,6 +63,6 @@ public class RankingProdutoQtd {
                 "\nMes: " + mes +
                 "\nAno: " + ano +
                 "\nTotal de Vendas: " + totalVendido +
-                "\n";
+                "\n============";
     }
 }

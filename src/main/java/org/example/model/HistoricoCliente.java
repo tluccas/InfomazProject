@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HistoricoCliente {
@@ -7,10 +8,10 @@ public class HistoricoCliente {
     private String nomeCliente;
     private List<String> comprados;
 
-    public HistoricoCliente(int idCliente, String nomeCliente, List<String> comprados) {
+    public HistoricoCliente(int idCliente, String nomeCliente) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
-        this.comprados = comprados;
+        this.comprados = new ArrayList<String>();
     }
 
     public void addCompra(String produto) {
@@ -45,8 +46,7 @@ public class HistoricoCliente {
     @Override
     public String toString() {
         return String.format(
-                "\nNome: %s \nIdCliente: %s\nItens Comprados: %s",
-                nomeCliente, idCliente, String.join(", ", comprados),
-        "\n-----------");
+                "\nNome: %s \nItens Comprados: %s\n===========\n",
+                nomeCliente, String.join("\n >>>", comprados));
     }
 }

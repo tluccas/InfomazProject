@@ -24,7 +24,6 @@ public class MediaValorService {
     }
 
     public void calculaMediaVendas() throws SQLException {
-        List<Produto> produtos = produtoDAO.listarProduto();
         List<Venda> vendas = vendaDAO.listarVenda();
         List<MediaValorProd> lista = new ArrayList<>();
 

@@ -56,6 +56,6 @@ public class RankingFornecedores {
     }
 
     public String toString() {
-        return "Fornecedor: " + nomeFornecedor + "\nMes: " + mes + "\nAno: " + ano + "\nEstoque: " + estoque + "\n----------\n";
+        return "Fornecedor: " + nomeFornecedor + "\nMes: " + mes + "\nAno: " + ano + "\nEstoque: " + estoque + "\n===============\n";
     }
 }

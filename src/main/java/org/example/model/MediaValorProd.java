@@ -75,7 +75,7 @@ public class MediaValorProd {
     @Override
     public String toString() {
         return String.format(
-                "\nCategoria: %s\nMês: %s\nAno: %d\nMédia de venda: R$ %.2f\n------------------",
+                "\nCategoria: %s\nMês: %s\nAno: %d\nMédia de venda: R$ %.2f\n================",
                 categoria, mes, ano, media
         );
     }

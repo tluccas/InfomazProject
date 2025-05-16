@@ -69,7 +69,7 @@ public class MargemLucroCategoria {
     @Override
     public String toString() {
         return String.format(
-                "Categoria: %s\nLucro Total: R$ %.2f\nMargem de Lucro: %.2f%%\n----------",
+                "Categoria: %s\nLucro Total: R$ %.2f\nMargem de Lucro: %.2f%%\n===========",
                 categoria, lucroTotal, margemLucro * 100 //converte em porcentagem (na variavel é armazenado como 0.10 por ex)
         );
     }

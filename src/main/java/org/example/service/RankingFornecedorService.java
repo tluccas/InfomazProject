@@ -27,7 +27,6 @@ public class RankingFornecedorService implements RankingService{
     @Override
     public void CalcularRanking() throws SQLException {
         List<Estoque> estoque = estoqueDAO.listarEstoque();
-        List<Fornecedor> fornecedor = fornecedorDAO.listarFornecedor();
         List<RankingFornecedores> ranking = new ArrayList<>();
 
         for (Estoque est : estoque) {

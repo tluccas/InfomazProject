@@ -42,7 +42,7 @@ public class RankingCliente{
 
     @Override
     public String toString() {
-        return "Cliente: " + nomeCliente + "\nMês: " + mes + "\nAno: " + ano + "\nCompras: " + totalComprado + "\n";
+        return "Cliente: " + nomeCliente + "\nMês: " + mes + "\nAno: " + ano + "\nCompras: " + totalComprado + "\n================";
     }
 }
 

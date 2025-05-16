@@ -57,7 +57,7 @@ public class RkProdutoVenda {
 
     @Override
     public String toString() {
-        return String.format("Produto: %s\nMês: %d\nAno: %d\nValor de Vendas: %.2f",
+        return String.format("Produto: %s\nMês: %d\nAno: %d\nValor de Vendas: %.2f\n\n===========",
                 nome, mes, ano, valorVendido
 
         );

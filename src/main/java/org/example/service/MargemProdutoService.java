@@ -43,7 +43,8 @@ public class MargemProdutoService {
                     if (produto.getIdEstoque() == est.getIdEstoque()) {
                         int id = produto.getIdProduto();
                         String nome = produto.getNomeProduto();
-                        double calculo = est.getValorEstoque() - (venda.getValorItem() * venda.getQtdItem());
+                        double margemUnitaria = venda.getValorItem() - est.getValorEstoque();  // valor de venda por unidade
+                        double calculo = margemUnitaria * venda.getQtdItem();  // calcula a margem total da venda (por produto)
 
                         ProdutoMargem existente = null;
                         for (ProdutoMargem m : margem) {
