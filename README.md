@@ -26,12 +26,6 @@
   Sistema de gerenciamento de banco de dados utilizado para armazenar os dados da aplicação.  
   Os dados das planilhas foram importados para as tabelas por meio do formato CSV.
 
- -> Os arquivos do banco de dandos encontram-se em CasePeers\infomazDB tanto em formato DUMP quanto físico que o MySQL gera na pasta infomazDB
-
----
-
--> O main do projeto está em \infomazProject\src\main\java\org\example\Main.java
-
 Como executar:
 
 1. Configure o banco de dados MySQL com os dados do dump ou arquivos físicos gerados pelo MySQL.
