@@ -43,7 +43,7 @@ public class RkProdutoVendaService implements RankingService{
                 }
             }
             if(existente != null){
-                existente.setValorVendido(venda.getQtdItem() * venda.getQtdItem());
+                existente.setValorVendido(venda.getValorItem() * venda.getQtdItem());
             }else{
                 double totalvenda = venda.getValorItem() * venda.getQtdItem();
                 ranking.add(new RkProdutoVenda(nome, idPrd, mes, ano, totalvenda));

@@ -11,20 +11,6 @@ public class VendaDAO {
         this.conn = conn;
     }
 
-    public void inserir(Venda venda) throws SQLException {
-        String sql = "INSERT INTO transacoes_vendas (idNota, dataNota, valorNota, valorItem, qtdItem, idProduto, idCliente) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, venda.getIdNota());
-            stmt.setDate(2, venda.getDataNota());
-            stmt.setDouble(3, venda.getValorNota());
-            stmt.setDouble(4, venda.getValorItem());
-            stmt.setInt(5, venda.getQtdItem());
-            stmt.setInt(6, venda.getIdProduto());
-            stmt.setInt(7, venda.getIdCliente());
-            stmt.executeUpdate();
-        }
-    }
-
     public List<Venda> listarVenda() throws SQLException {
         List<Venda> lista = new ArrayList<>();
         String sql = "SELECT * FROM transacoes_vendas";

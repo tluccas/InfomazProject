@@ -11,16 +11,6 @@ public class FornecedorDAO {
         this.conn = conn;
     }
 
-    public void inserir(Fornecedor fornecedor) throws SQLException {
-        String sql = "INSERT INTO cadastro_fornecedores (idFornecedor, nomeFornecedor, dataCadastro) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, fornecedor.getIdFornecedor());
-            stmt.setString(2, fornecedor.getNomeFornecedor());
-            stmt.setDate(3, fornecedor.getDataCadastro());
-            stmt.executeUpdate();
-        }
-    }
-
     public List<Fornecedor> listarFornecedor() throws SQLException {
         List<Fornecedor> lista = new ArrayList<>();
         String sql = "SELECT * FROM cadastro_fornecedores";

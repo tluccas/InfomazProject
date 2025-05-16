@@ -12,16 +12,6 @@ public class ClienteDAO {
         this.conn = conn;
     }
 
-    public void inserir(Cliente cliente) throws SQLException {
-        String sql = "INSERT INTO cadastro_clientes (idCliente, nomeCliente, dataCadastro) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, cliente.getIdCliente());
-            stmt.setString(2, cliente.getNomeCliente());
-            stmt.setDate(3, cliente.getDataCadastro());
-            stmt.executeUpdate();
-        }
-    }
-
     public List<Cliente> listarCliente() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
         String sql = "SELECT * FROM cadastro_clientes";
