@@ -12,30 +12,41 @@ import java.util.Comparator;
 import java.util.List;
 
 public class RkEstoqueService {
+    // DAOs para acessar os dados de produto e estoque
     private ProdutoDAO produtoDAO;
     private EstoqueDAO estoqueDAO;
+    // Lista que armazena o ranking de estoque
     private List<RkEstoque> rankingEstoque;
 
+    // Construtor que recebe os DAOs necessários
     public RkEstoqueService(ProdutoDAO produtoDAO, EstoqueDAO estoqueDAO) {
         this.produtoDAO = produtoDAO;
         this.estoqueDAO = estoqueDAO;
         this.rankingEstoque = new ArrayList<>();
     }
 
+    // Método principal que gera o ranking de estoque
     public void gerarRankingEstoque() throws SQLException {
+        // Pega todos os produtos e estoques do banco de dados
         List<Produto> produtos = produtoDAO.listarProduto();
         List<Estoque> estoque = estoqueDAO.listarEstoque();
         List<RkEstoque> lista = new ArrayList<>();
 
+        // Para cada item no estoque...
         for (Estoque est : estoque) {
             int idEstoque = est.getIdEstoque();
             Produto prodExistente = null;
+
+            // Procura o produto correspondente no cadastro de produtos
             for (Produto produto : produtos) {
-                if (produto.getIdEstoque() == idEstoque) { //Verifica se o produto na tabela CADASTRO_ESTOQUE está com o mesmo registro (Id de estoque) em CADASTRO_PRODUTOS
+                if (produto.getIdEstoque() == idEstoque) {
+                    // Se encontrar, armazena o produto
                     prodExistente = produto;
                     break;
                 }
             }
+
+            // Se não encontrar o produto, mostra mensagem de erro
             if (prodExistente == null) {
                 System.out.println("Produto de id: " + idEstoque + "inexistente");
             }
@@ -43,12 +54,16 @@ public class RkEstoqueService {
 
             int quantidade = est.getQtdEstoque();
 
+            // Verifica se já existe um ranking para este produto
             RkEstoque existente = null;
             for (RkEstoque rkestoque : lista) {
                 if (rkestoque.getIdEstoque() == idEstoque) {
                     existente = rkestoque;
                 }
             }
+
+            // Se já existe, atualiza a quantidade
+            // Se não existe, cria um novo item no ranking
             if (existente != null) {
                 existente.setQuantidade(quantidade);
             } else {
@@ -57,19 +72,22 @@ public class RkEstoqueService {
                 lista.add(novo);
             }
         }
-        this.rankingEstoque = lista; // Atualiza a lista principal
+        this.rankingEstoque = lista; // Atualiza a lista principal com os novos dados
     }
 
+    // Retorna o ranking ordenado por quantidade (do maior para o menor)
     public List<RkEstoque> getRankingEstoque() {
         rankingEstoque.sort(Comparator.comparingInt(RkEstoque::getQuantidade).reversed());
         return rankingEstoque;
     }
 
+    // Método para exibir o ranking de forma bonitinha no console
     public void exibirRankingEstoque() {
         List<RkEstoque> lista = getRankingEstoque();
         int posicao = 1;
 
-        for (RkEstoque r : lista) { // Apenas estético novamente
+        // Imprime cada item do ranking com sua posição (1º, 2º, etc.)
+        for (RkEstoque r : lista) {
             System.out.println(posicao + "º - " + r);
             posicao++;
         }

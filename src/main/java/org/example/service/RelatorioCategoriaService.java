@@ -21,43 +21,57 @@ public class RelatorioCategoriaService {
 
 
     public void gerarRelatorio() throws SQLException {
+        // Obtém todas as vendas e produtos do banco de dados
         List<Venda> vendas = vendaDAO.listarVenda();
         List<Produto> produtos = produtoDAO.listarProduto();
+
+        // Lista temporária para armazenar o relatório enquanto é gerado
         List<RelatorioCategoria> relatorio = new ArrayList<RelatorioCategoria>();
-        for (Venda venda : vendas){
+
+        // Para cada venda no sistema...
+        for (Venda venda : vendas) {
             Produto p = null;
-            for (Produto produto : produtos){
-                if(produto.getIdProduto() == venda.getIdProduto()){ //Verifica se o produto esta na tabela de venda
+
+            // Procura o produto correspondente na lista de produtos
+            for (Produto produto : produtos) {
+                if (produto.getIdProduto() == venda.getIdProduto()) {
                     p = produto;
-                    break;
+                    break;  // Produto encontrado, pode parar de procurar
                 }
             }
 
-            if (p != null){
+            // Se encontrou o produto...
+            if (p != null) {
+                String categoria = p.getCategoria(); // Pega a categoria do produto
 
-                String categoria = p.getCategoria(); //Pega a categoria do produto
-                double totalVenda = venda.getValorItem() * venda.getQtdItem(); //Calcula o valor total da venda de acordo com a qtd na tabela
+                // Calcula o valor total da venda (preço unitário × quantidade)
+                double totalVenda = venda.getValorItem() * venda.getQtdItem();
 
+                // Verifica se já existe um registro para esta categoria no relatório
                 RelatorioCategoria existente = null;
-                for (RelatorioCategoria r : relatorio){
-                    if(r.getCategoria().equals(categoria)){
+                for (RelatorioCategoria r : relatorio) {
+                    if (r.getCategoria().equals(categoria)) {
                         existente = r;
-                        break;
+                        break;  // Categoria encontrada, pode parar de procurar
                     }
                 }
 
-                if (existente != null){
-                    existente.addVenda(totalVenda);
-                }else {
+                // Se a categoria já existe no relatório...
+                if (existente != null) {
+                    existente.addVenda(totalVenda); // Adiciona o valor ao total existente
+                } else {
+                    // Se não existe, cria um novo registro para esta categoria
                     relatorio.add(new RelatorioCategoria(categoria, totalVenda));
                 }
             }
         }
 
-        this.relatorios = relatorio; //salva na lista principal
-
+        // Atualiza a lista principal de relatórios com os dados calculados
+        this.relatorios = relatorio;
     }
+
+    // Método que retorna a lista de relatórios por categoria
     public List<RelatorioCategoria> getRelatorios() {
-        return relatorios;
+        return relatorios; // Retorna a lista como está (sem ordenação específica)
     }
 }

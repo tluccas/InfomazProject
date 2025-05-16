@@ -24,45 +24,61 @@ public class RkProdutoVendaService implements RankingService{
 
     @Override
     public void CalcularRanking() throws SQLException {
+        // Pega todas as vendas do banco de dados
         List<Venda> vendas = vendaDAO.listarVenda();
+        // Lista temporária para armazenar o ranking enquanto é calculado
         List<RkProdutoVenda> ranking = new ArrayList<>();
 
+        // Para cada venda registrada...
         for (Venda venda : vendas) {
-
+            // Extrai a data da venda e separa mês e ano
             LocalDate data = venda.getDataNota().toLocalDate();
             int mes = data.getMonthValue();
             int ano = data.getYear();
+
+            // Pega o ID e nome do produto vendido
             int idPrd = venda.getIdProduto();
             String nome = produtoDAO.buscarProduto(idPrd).getNomeProduto();
 
+            // Verifica se já existe um registro deste produto para este mês/ano no ranking
             RkProdutoVenda existente = null;
-            for (RkProdutoVenda p : ranking){
-                if(p.getIdProduto() == venda.getIdProduto() && p.getMes() == mes && p.getAno() == ano){
+            for (RkProdutoVenda p : ranking) {
+                if (p.getIdProduto() == venda.getIdProduto() && p.getMes() == mes && p.getAno() == ano) {
                     existente = p;
-                    break;
+                    break;  // Se encontrou, para de procurar
                 }
             }
-            if(existente != null){
+
+            // Se já existe um registro para este produto no mês/ano...
+            if (existente != null) {
+                // Atualiza o valor vendido (soma ao valor existente)
                 existente.setValorVendido(venda.getValorItem() * venda.getQtdItem());
-            }else{
+            } else {
+                // Se não existe, cria um novo registro no ranking
                 double totalvenda = venda.getValorItem() * venda.getQtdItem();
                 ranking.add(new RkProdutoVenda(nome, idPrd, mes, ano, totalvenda));
             }
         }
+        // Atualiza o ranking da classe com os dados calculados
         this.rankingProdutos = ranking;
     }
 
+    // Retorna o ranking ordenado por valor vendido (do maior para o menor)
     @Override
     public List<RkProdutoVenda> getRanking() {
+        // Ordena a lista pelo valor vendido em ordem decrescente
         rankingProdutos.sort(Comparator.comparingDouble(RkProdutoVenda::getValorVendido).reversed());
         return rankingProdutos;
     }
 
+    // Exibe o ranking formatado no console
     @Override
     public void exibirRanking() {
+        // Pega o ranking já ordenado
         List<RkProdutoVenda> ranking = getRanking();
-        int posicao = 1;
+        int posicao = 1;  // Contador para as posições (1º, 2º, etc.)
 
+        // Imprime cada item do ranking com sua posição
         for (RkProdutoVenda r : ranking) {
             System.out.println(posicao + "º - " + r);
             posicao++;
