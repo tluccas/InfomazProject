@@ -5,6 +5,7 @@ import org.example.dao.ProdutoDAO;
 import org.example.dao.VendaDAO;
 import org.example.model.*;
 
+import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -94,11 +95,23 @@ public class MargemLucroCategoriaService {
 
     public void exibirRanking() {
         List<MargemLucroCategoria> ranking = getRanking();
-        int posicao = 1;
 
+        // exibição da tabela
+        System.out.println("==============================================");
+        System.out.printf("%-5s %-20s %-15s %-15s\n",
+                "Pos", "Categoria", "Lucro Total", "Margem (%)");
+        System.out.println("==============================================");
+
+        int posicao = 1;
         for (MargemLucroCategoria m : ranking) {
-            System.out.println(posicao + "º - " + m);
+            System.out.printf("%-5d %-20s %-15.2f %-15.2f\n",
+                    posicao,
+                    m.getCategoria(),
+                    m.getLucroTotal(),
+                    m.getMargemLucro());
             posicao++;
         }
+
+        System.out.println("==============================================");
     }
 }

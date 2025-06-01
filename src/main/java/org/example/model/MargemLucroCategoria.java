@@ -66,6 +66,10 @@ public class MargemLucroCategoria {
         this.lucroTotal = lucroTotal;
     }
 
+    public double getMargemLucro(){
+        return margemLucro;
+    }
+
     @Override
     public String toString() {
         return String.format(
