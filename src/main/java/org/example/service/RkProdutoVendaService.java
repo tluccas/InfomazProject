@@ -68,7 +68,12 @@ public class RkProdutoVendaService implements RankingService{
     @Override
     public List<RkProdutoVenda> getRanking() {
         // Ordena a lista pelo valor vendido em ordem decrescente
-        rankingProdutos.sort(Comparator.comparingDouble(RkProdutoVenda::getValorVendido).reversed());
+        rankingProdutos.sort(
+                Comparator.comparingInt(RkProdutoVenda::getAno).reversed()
+                        .thenComparingInt(RkProdutoVenda::getMes).reversed()
+                        .thenComparing(Comparator.comparingDouble(RkProdutoVenda::getValorVendido).reversed())
+        );
+
         return rankingProdutos;
     }
 

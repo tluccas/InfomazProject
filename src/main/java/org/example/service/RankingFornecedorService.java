@@ -70,7 +70,11 @@ public class RankingFornecedorService implements RankingService{
 
     @Override
     public List<RankingFornecedores> getRanking() {
-        rankingFornecedores.sort(Comparator.comparingInt(RankingFornecedores::getEstoque).reversed());
+        rankingFornecedores.sort(
+                Comparator.comparingInt(RankingFornecedores::getAno)
+                        .thenComparingInt(RankingFornecedores::getMes)
+                        .thenComparing(Comparator.comparingInt(RankingFornecedores::getEstoque).reversed())
+        );;
         return rankingFornecedores;
     }
 

@@ -66,7 +66,11 @@ public class RankingProdutoQtdService implements RankingService{
 
     @Override
     public List<RankingProdutoQtd> getRanking() {
-        rankingProdutos.sort(Comparator.comparingInt(RankingProdutoQtd::getTotalVendido).reversed());
+        rankingProdutos.sort(
+                Comparator.comparingInt(RankingProdutoQtd::getAno)
+                        .thenComparingInt(RankingProdutoQtd::getMes)
+                        .thenComparing(Comparator.comparingInt(RankingProdutoQtd::getTotalVendido).reversed())
+        );
         return rankingProdutos;
     }
 

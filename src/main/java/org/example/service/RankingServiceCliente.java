@@ -68,7 +68,11 @@ public class RankingServiceCliente implements RankingService {
 
     @Override
     public List<RankingCliente> getRanking() {
-        rankingClientes.sort(Comparator.comparingInt(RankingCliente::getTotalComprado).reversed()); //utilizando sort para ordenar  os obj da lista
+        rankingClientes.sort(
+                Comparator.comparingInt(RankingCliente::getAno)
+                        .thenComparingInt(RankingCliente::getMes)
+                        .thenComparing(Comparator.comparingInt(RankingCliente::getTotalComprado).reversed())
+        ); //utilizando sort para ordenar  os obj da lista
         return rankingClientes;
     }
 
