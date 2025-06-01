@@ -84,11 +84,11 @@ public class RankingFornecedorService implements RankingService{
 
         int posicao = 1;
         for (RankingFornecedores r : ranking) {
-            System.out.printf("%-5d | %-25s | %-10s | %-10d | %-10d\n",
+            System.out.printf("%-5d | %-25s | %-10d | %-10d | %-10d\n",
                     posicao,
                     r.getNomeFornecedor(),
-                    r.getMes(),
                     r.getAno(),
+                    r.getMes(),
                     r.getEstoque());
             posicao++;
         }
