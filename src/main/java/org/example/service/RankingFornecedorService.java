@@ -76,11 +76,24 @@ public class RankingFornecedorService implements RankingService{
 
     public void exibirRanking() {
         List<RankingFornecedores> ranking = getRanking();
-        int posicao = 1;
 
+        System.out.println("====================================================================================");
+        System.out.printf("%-5s | %-25s | %-10s | %-10s | %-10s\n",
+                "Pos", "Fornecedor", "Mês", "Ano", "Estoque");
+        System.out.println("------------------------------------------------------------------------------------");
+
+        int posicao = 1;
         for (RankingFornecedores r : ranking) {
-            System.out.println(posicao + "º - " + r);
+            System.out.printf("%-5d | %-25s | %-10s | %-10d | %-10d\n",
+                    posicao,
+                    r.getNomeFornecedor(),
+                    r.getMes(),
+                    r.getAno(),
+                    r.getEstoque());
             posicao++;
         }
+
+        System.out.println("====================================================================================");
     }
+
 }

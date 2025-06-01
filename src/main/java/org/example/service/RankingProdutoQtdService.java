@@ -73,11 +73,24 @@ public class RankingProdutoQtdService implements RankingService{
     @Override
     public void exibirRanking() {
         List<RankingProdutoQtd> ranking = getRanking();
-        int posicao = 1;
 
-        for (RankingProdutoQtd r : ranking) {
-            System.out.println(posicao + "º - " + r);
+        System.out.println("====================================================================================");
+        System.out.printf("%-5s | %-25s | %-10s | %-10s | %-15s\n",
+                "Pos", "Produto", "Mês", "Ano", "Total Vendas");
+        System.out.println("------------------------------------------------------------------------------------");
+
+        int posicao = 1;
+        for (RankingProdutoQtd p : ranking) {
+            System.out.printf("%-5d | %-25s | %-10s | %-10d | %-15d\n",
+                    posicao,
+                    p.getNome(),
+                    p.getMes(),
+                    p.getAno(),
+                    p.getTotalVendido());
             posicao++;
         }
+
+        System.out.println("====================================================================================");
     }
+
 }

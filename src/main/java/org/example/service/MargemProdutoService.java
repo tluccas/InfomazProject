@@ -88,4 +88,25 @@ public class MargemProdutoService {
     public List<ProdutoMargem> getMargemProdutos() {
         return margemProdutos;
     }
+
+    public void exibirMargemProdutos() {
+        List<ProdutoMargem> margemProdutos = getMargemProdutos();
+
+        // Exibição da tabela
+        System.out.println("==========================================================");
+        System.out.printf("%-5s | %-25s | %-15s\n",
+                "Pos", "Produto", "Margem Produto");
+        System.out.println("----------------------------------------------------------");
+
+        int posicao = 1;
+        for (ProdutoMargem m : margemProdutos) {
+            System.out.printf("%-5d | %-25s | %-15s\n",
+                    posicao,
+                    m.getNomeProduto(),
+                    m.getMargem());
+            posicao++;
+        }
+
+        System.out.println("==========================================================");
+    }
 }

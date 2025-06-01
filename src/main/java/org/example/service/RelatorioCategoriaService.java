@@ -72,6 +72,26 @@ public class RelatorioCategoriaService {
 
     // Método que retorna a lista de relatórios por categoria
     public List<RelatorioCategoria> getRelatorios() {
-        return relatorios; // Retorna a lista como está (sem ordenação específica)
+        return relatorios;
     }
+    public void exibirRelatorios() {
+        List<RelatorioCategoria> relatorios = getRelatorios();
+
+        System.out.println("==============================================================");
+        System.out.printf("%-5s | %-25s | %-15s\n",
+                "Pos", "Categoria", "Valor");
+        System.out.println("--------------------------------------------------------------");
+
+        int posicao = 1;
+        for (RelatorioCategoria relatorio : relatorios) {
+            System.out.printf("%-5d | %-25s | %-15.2f\n",
+                    posicao,
+                    relatorio.getCategoria(),
+                    relatorio.getValor());
+            posicao++;
+        }
+
+        System.out.println("==============================================================");
+    }
+
 }

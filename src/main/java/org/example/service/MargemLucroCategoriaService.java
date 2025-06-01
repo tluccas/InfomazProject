@@ -96,15 +96,14 @@ public class MargemLucroCategoriaService {
     public void exibirRanking() {
         List<MargemLucroCategoria> ranking = getRanking();
 
-        // exibição da tabela
-        System.out.println("==============================================");
-        System.out.printf("%-5s %-20s %-15s %-15s\n",
+        System.out.println("===============================================================");
+        System.out.printf("%-5s | %-20s | %-15s | %-15s\n",
                 "Pos", "Categoria", "Lucro Total", "Margem (%)");
-        System.out.println("==============================================");
+        System.out.println("---------------------------------------------------------------");
 
         int posicao = 1;
         for (MargemLucroCategoria m : ranking) {
-            System.out.printf("%-5d %-20s %-15.2f %-15.2f\n",
+            System.out.printf("%-5d | %-20s | %-15.2f | %-15.2f\n",
                     posicao,
                     m.getCategoria(),
                     m.getLucroTotal(),
@@ -112,6 +111,7 @@ public class MargemLucroCategoriaService {
             posicao++;
         }
 
-        System.out.println("==============================================");
+        System.out.println("===============================================================");
     }
+
 }

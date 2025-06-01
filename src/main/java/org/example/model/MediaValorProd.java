@@ -68,6 +68,10 @@ public class MediaValorProd {
         return valorTotal;
     }
 
+    public double getMedia() {
+        return media;
+    }
+
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }

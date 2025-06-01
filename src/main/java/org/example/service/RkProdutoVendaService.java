@@ -75,14 +75,26 @@ public class RkProdutoVendaService implements RankingService{
     // Exibe o ranking formatado no console
     @Override
     public void exibirRanking() {
-        // Pega o ranking já ordenado
         List<RkProdutoVenda> ranking = getRanking();
-        int posicao = 1;  // Contador para as posições (1º, 2º, etc.)
+        int posicao = 1;
 
-        // Imprime cada item do ranking com sua posição
+        System.out.println("=============================================================================");
+        System.out.printf("%-5s | %-25s | %-10s | %-10s | %-15s\n",
+                "Pos", "Produto", "Mês", "Ano", "Valor Vendido");
+        System.out.println("-----------------------------------------------------------------------------");
+
         for (RkProdutoVenda r : ranking) {
-            System.out.println(posicao + "º - " + r);
+            System.out.printf("%-5d | %-25s | %-10s | %-10d | %-15.2f\n",
+                    posicao,
+                    r.getNome(),
+                    r.getMes(),
+                    r.getAno(),
+                    r.getValorVendido());
             posicao++;
         }
+
+        System.out.println("=============================================================================");
     }
+
+
 }

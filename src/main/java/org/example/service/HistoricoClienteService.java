@@ -3,9 +3,7 @@ package org.example.service;
 import org.example.dao.ClienteDAO;
 import org.example.dao.ProdutoDAO;
 import org.example.dao.VendaDAO;
-import org.example.model.Cliente;
 import org.example.model.HistoricoCliente;
-import org.example.model.Produto;
 import org.example.model.Venda;
 
 import java.sql.SQLException;
@@ -65,7 +63,28 @@ public class HistoricoClienteService {
         this.historicoClientes = lista;
     }
 
-    public List<HistoricoCliente> getHistoricoClientes() {
+    public List<HistoricoCliente> getHistorico() {
         return historicoClientes;
     }
+    public void exibirHistoricoClientes() {
+        List<HistoricoCliente> lista = getHistorico();
+
+        // Exibição da tabela
+        System.out.println("=========================================================");
+        System.out.printf("%-5s | %-25s | %-15s\n",
+                "Pos", "Nome", "Itens Comprados");
+        System.out.println("---------------------------------------------------------");
+
+        int posicao = 1;
+        for (HistoricoCliente h : lista) {
+            System.out.printf("%-5d | %-25s | %-15s\n",
+                    posicao,
+                    h.getNomeCliente(),
+                    h.getComprados());
+            posicao++;
+        }
+
+        System.out.println("=========================================================");
+    }
+
 }

@@ -21,6 +21,7 @@ public class RankingServiceCliente implements RankingService {
         this.clienteDAO = clienteDAO;
         this.rankingClientes = new ArrayList<RankingCliente>();
     }
+
     // Método do DESAFIO 3
     public void CalcularRanking() throws SQLException {
         // Obtém todas as vendas registradas no sistema
@@ -72,12 +73,28 @@ public class RankingServiceCliente implements RankingService {
     }
 
     public void exibirRanking() {
-        List<RankingCliente> ranking = getRanking();
-        int posicao = 1;
+        List<RankingCliente> rankingC = getRanking();
 
-        for (RankingCliente r : ranking) {
-            System.out.println(posicao + "º - " + r); //Printa a ordem de cada um (estética)
+        System.out.println("====================================================================================");
+        System.out.printf("%-5s | %-25s | %-10s | %-10s | %-15s\n",
+                "Pos", "Nome", "Mês", "Ano", "Compras");
+        System.out.println("------------------------------------------------------------------------------------");
+
+        int posicao = 1;
+        for (RankingCliente c : rankingC) {
+            System.out.printf("%-5d | %-25s | %-10d | %-10d | %-15d\n",
+                    posicao,
+                    c.getNomeCliente(),
+                    c.getMes(),
+                    c.getAno(),
+                    c.getTotalComprado());
             posicao++;
         }
+
+        System.out.println("====================================================================================");
     }
+
+
+
 }
+

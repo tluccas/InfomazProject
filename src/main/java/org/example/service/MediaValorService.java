@@ -75,7 +75,31 @@ public class MediaValorService {
         this.mediaVendas = lista;
     }
 
-    public List<MediaValorProd> exibirMediaVendas() {;
+    public List<MediaValorProd> getMediaVendas() {;
         return mediaVendas;
     }
+
+    public void exibirMediaVendas() {
+        List<MediaValorProd> lista = getMediaVendas();
+
+        // exibição da tabela
+        System.out.println("===========================================================================");
+        System.out.printf("%-5s | %-20s | %-10s | %-10s | %-15s\n",
+                "Pos", "Categoria", "Mês", "Ano", "Média Vendas");
+        System.out.println("---------------------------------------------------------------------------");
+
+        int posicao = 1;
+        for (MediaValorProd m : lista) {
+            System.out.printf("%-5d | %-20s | %-10d | %-10d | %-15.2f\n",
+                    posicao,
+                    m.getCategoria(),
+                    m.getMes(),
+                    m.getAno(),
+                    m.getMedia());
+            posicao++;
+        }
+
+        System.out.println("===========================================================================");
+    }
+
 }

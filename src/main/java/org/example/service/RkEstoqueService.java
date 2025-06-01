@@ -86,10 +86,19 @@ public class RkEstoqueService {
         List<RkEstoque> lista = getRankingEstoque();
         int posicao = 1;
 
-        // Imprime cada item do ranking com sua posição (1º, 2º, etc.)
+        System.out.println("=======================================");
+        System.out.printf("%-5s | %-25s | %-10s\n", "Pos", "Produto", "Quantidade");
+        System.out.println("---------------------------------------");
+
         for (RkEstoque r : lista) {
-            System.out.println(posicao + "º - " + r);
+            System.out.printf("%-5d | %-25s | %-10d\n",
+                    posicao,
+                    r.getNomeProduto(),
+                    r.getQuantidade());
             posicao++;
         }
+
+        System.out.println("=======================================");
     }
+
 }
