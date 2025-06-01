@@ -67,7 +67,7 @@ public class MargemLucroCategoria {
     }
 
     public double getMargemLucro(){
-        return margemLucro;
+        return margemLucro * 100;
     }
 
     @Override
